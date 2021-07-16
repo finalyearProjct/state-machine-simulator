@@ -1,0 +1,156 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>logic_gates &#8212; Logic_gates 1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for logic_gates</h1><div class="highlight"><pre>
+<span></span><span class="c1">## Digital#######</span>
+<span class="kn">from</span> <span class="nn">SM</span> <span class="kn">import</span> <span class="n">SM</span>
+<div class="viewcode-block" id="NOT_GATE"><a class="viewcode-back" href="../rst/logic_gates.html#logic_gates.NOT_GATE">[docs]</a><span class="k">class</span>  <span class="nc">NOT_GATE</span><span class="p">(</span><span class="n">SM</span><span class="p">):</span> <span class="c1"># Class to implement NOT gate with SM structure</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Class to implement NOT gate with SM structure. Inherited from parent state machine&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span><span class="c1"># There is no constructor</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">startState</span><span class="o">=</span><span class="kc">True</span>  <span class="c1"># This value will have no impact since NOT gate is not a sequential circuit.</span>
+<div class="viewcode-block" id="NOT_GATE.getNextValues"><a class="viewcode-back" href="../rst/logic_gates.html#logic_gates.NOT_GATE.getNextValues">[docs]</a>    <span class="k">def</span> <span class="nf">getNextValues</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">,</span> <span class="n">inp</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Function  which provide the logic which connect the</span>
+<span class="sd">        # Function  which provide the logic which connect the future state with present input and and present state,But here the past have no impact. for NOT gate : just negate the input value&quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">inp</span><span class="o">==</span><span class="s1">&#39;undefined&#39;</span><span class="p">:</span> <span class="c1"># &#39;undefined &#39;is equilvalent to tristate in electronics,equivalent to nothing</span>
+            <span class="k">return</span> <span class="p">(</span><span class="s1">&#39;undefined&#39;</span><span class="p">,</span><span class="s1">&#39;undefined&#39;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>   <span class="c1"># just negate the input value</span>
+            <span class="k">return</span> <span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="ow">not</span><span class="p">(</span><span class="n">inp</span><span class="p">))</span></div>
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;NOT-Gate&quot;</span></div>
+<div class="viewcode-block" id="NAND_GATE"><a class="viewcode-back" href="../rst/logic_gates.html#logic_gates.NAND_GATE">[docs]</a><span class="k">class</span>  <span class="nc">NAND_GATE</span><span class="p">(</span><span class="n">SM</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Class to implement NAND gate with SM structure. Inherited from parent state machine&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span><span class="c1"># There is no constructor</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">startState</span><span class="o">=</span><span class="kc">None</span>   <span class="c1"># This value will have no impact since NAND gate is not a sequential circuit.</span>
+<div class="viewcode-block" id="NAND_GATE.getNextValues"><a class="viewcode-back" href="../rst/logic_gates.html#logic_gates.NAND_GATE.getNextValues">[docs]</a>    <span class="k">def</span> <span class="nf">getNextValues</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">,</span> <span class="n">inp</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Function  which provide the logic which connect the future state with present input and and present state,But here the past have no impact. for NAND gate : just (A.B)&quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">inp</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;undefined&#39;</span> <span class="ow">or</span> <span class="n">inp</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;undefined&#39;</span><span class="p">:</span><span class="c1"># &#39;undefined &#39;is equilvalent to tristate in electronics,equivalent to nothing</span>
+            <span class="k">return</span> <span class="p">(</span><span class="s1">&#39;undefined&#39;</span><span class="p">,</span><span class="s1">&#39;undefined&#39;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span><span class="c1"># just apply the logic</span>
+            <span class="k">return</span> <span class="p">(</span><span class="n">state</span><span class="p">,</span><span class="ow">not</span><span class="p">(</span><span class="nb">bool</span><span class="o">.</span><span class="fm">__and__</span><span class="p">(</span><span class="n">inp</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">inp</span><span class="p">[</span><span class="mi">1</span><span class="p">])))</span></div>
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;NAND-Gate&quot;</span></div>
+<div class="viewcode-block" id="NOR_GATE"><a class="viewcode-back" href="../rst/logic_gates.html#logic_gates.NOR_GATE">[docs]</a><span class="k">class</span> <span class="nc">NOR_GATE</span><span class="p">(</span><span class="n">SM</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Class to implement NOR gate with SM structure. Inherited from parent state machine&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span><span class="c1"># There is no constructor</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">startState</span><span class="o">=</span><span class="kc">None</span> <span class="c1"># This value will have no impact since NOR  gate is not a sequential circuit.</span>
+<div class="viewcode-block" id="NOR_GATE.getNextValues"><a class="viewcode-back" href="../rst/logic_gates.html#logic_gates.NOR_GATE.getNextValues">[docs]</a>    <span class="k">def</span> <span class="nf">getNextValues</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">,</span> <span class="n">inp</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Function  which provide the logic which connect the future state with present input and and present state,But here the past have no impact. for NOR gate : just (A+B)&quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">inp</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;undefined&#39;</span> <span class="ow">or</span> <span class="n">inp</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;undefined&#39;</span><span class="p">:</span> <span class="c1"># &#39;undefined &#39;is equilvalent to tristate in electronics,equivalen</span>
+            <span class="k">return</span> <span class="p">(</span><span class="s1">&#39;undefined&#39;</span><span class="p">,</span><span class="s1">&#39;undefined&#39;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span> <span class="c1"># just apply the logic</span>
+            <span class="k">return</span> <span class="p">(</span><span class="n">state</span><span class="p">,</span><span class="ow">not</span><span class="p">(</span><span class="nb">bool</span><span class="o">.</span><span class="fm">__or__</span><span class="p">(</span><span class="n">inp</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">inp</span><span class="p">[</span><span class="mi">1</span><span class="p">])))</span></div>
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;NOR-Gate&quot;</span></div>
+<div class="viewcode-block" id="XOR_GATE"><a class="viewcode-back" href="../rst/logic_gates.html#logic_gates.XOR_GATE">[docs]</a><span class="k">class</span> <span class="nc">XOR_GATE</span><span class="p">(</span><span class="n">SM</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">     Class to implement XOR gate with SM structure. Inherited from parent state machie&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span><span class="c1"># There is no constructor</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">startState</span><span class="o">=</span><span class="kc">None</span><span class="c1"># This value will have no impact since NOR  gate is not a sequential circuit.</span>
+<div class="viewcode-block" id="XOR_GATE.getNextValues"><a class="viewcode-back" href="../rst/logic_gates.html#logic_gates.XOR_GATE.getNextValues">[docs]</a>    <span class="k">def</span> <span class="nf">getNextValues</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">,</span> <span class="n">inp</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Function  which provide the logic which connect the  future state with present input and and present state,But here the past have no impact. for NOR gate : just xor(A,B)&quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">inp</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;undefined&#39;</span> <span class="ow">or</span> <span class="n">inp</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;undefined&#39;</span><span class="p">:</span><span class="c1"># &#39;undefined &#39;is equilvalent to tristate in electronics,equivalent to nothing</span>
+            <span class="k">return</span> <span class="p">(</span><span class="s1">&#39;undefined&#39;</span><span class="p">,</span><span class="s1">&#39;undefined&#39;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span><span class="c1"># just apply the logic</span>
+            <span class="k">return</span> <span class="p">(</span><span class="n">state</span><span class="p">,</span><span class="nb">bool</span><span class="o">.</span><span class="fm">__xor__</span><span class="p">(</span><span class="n">inp</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">inp</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span></div>
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;XOR-Gate&quot;</span></div>
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">Logic_gates</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2021, abhi.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.0.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

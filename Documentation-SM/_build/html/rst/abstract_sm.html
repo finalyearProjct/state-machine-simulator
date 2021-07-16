@@ -1,0 +1,208 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>abstract_sm module &#8212; abstract_statemachine 1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="module-abstract_sm">
+<span id="abstract-sm-module"></span><h1>abstract_sm module<a class="headerlink" href="#module-abstract_sm" title="Permalink to this headline">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="abstract_sm.Gain">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">abstract_sm.</span></span><span class="sig-name descname"><span class="pre">Gain</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">k</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/abstract_sm.html#Gain"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#abstract_sm.Gain" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">SM.SM</span></code></p>
+<p>This class is more like an amplifier in electronics,it will scale the input value by a cetain value</p>
+<p>parameters:k</p>
+<blockquote>
+<div><p>k= gain value</p>
+</div></blockquote>
+<dl class="py method">
+<dt class="sig sig-object py" id="abstract_sm.Gain.getNextValues">
+<span class="sig-name descname"><span class="pre">getNextValues</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inp</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/abstract_sm.html#Gain.getNextValues"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#abstract_sm.Gain.getNextValues" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function is used to scale the input stream by a factor of k</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="abstract_sm.MovingAvg2">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">abstract_sm.</span></span><span class="sig-name descname"><span class="pre">MovingAvg2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">initialValue</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/abstract_sm.html#MovingAvg2"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#abstract_sm.MovingAvg2" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">SM.SM</span></code></p>
+<p>This  class is used to compute the moving average of order 2 from a stream of numbers. Inherited class from parent state machine</p>
+<p>parameters:intialValue</p>
+<blockquote>
+<div><p>initialValue=intial value is given Here</p>
+</div></blockquote>
+<dl class="py method">
+<dt class="sig sig-object py" id="abstract_sm.MovingAvg2.getNextValues">
+<span class="sig-name descname"><span class="pre">getNextValues</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inp</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/abstract_sm.html#MovingAvg2.getNextValues"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#abstract_sm.MovingAvg2.getNextValues" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function  which provide the logic which connect the future state with present input and and
+present state for Moving average 2 it is (((present_sample)+(past_sample))/2)</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="abstract_sm.MovingAvg3">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">abstract_sm.</span></span><span class="sig-name descname"><span class="pre">MovingAvg3</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">initialValue</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/abstract_sm.html#MovingAvg3"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#abstract_sm.MovingAvg3" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">SM.SM</span></code></p>
+<p>This  class is used to compute the moving average of order 3 from a stream of numbers. Inherited class from parent state machine</p>
+<p>parameters:initialValue</p>
+<blockquote>
+<div><p>intialValue=intial value is given Here</p>
+</div></blockquote>
+<dl class="py method">
+<dt class="sig sig-object py" id="abstract_sm.MovingAvg3.getNextValues">
+<span class="sig-name descname"><span class="pre">getNextValues</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inp</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/abstract_sm.html#MovingAvg3.getNextValues"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#abstract_sm.MovingAvg3.getNextValues" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function  which provide the logic which connect the future state with present input and and present state
+for Moving average 3 it is (((present_sample)+(past_sample)+(past_sample))/3)</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="abstract_sm.Two_Dimen_Accumulator">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">abstract_sm.</span></span><span class="sig-name descname"><span class="pre">Two_Dimen_Accumulator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">initialValue</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[0,</span> <span class="pre">0]</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/abstract_sm.html#Two_Dimen_Accumulator"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#abstract_sm.Two_Dimen_Accumulator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">SM.SM</span></code></p>
+<p>This class is for implementing accumulator in 2 -D. Inherited class from parent state machine</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>setting the intial conditions</strong> (<em>intialValue=</em>) – </p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="abstract_sm.Two_Dimen_Accumulator.getNextValues">
+<span class="sig-name descname"><span class="pre">getNextValues</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inp</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/abstract_sm.html#Two_Dimen_Accumulator.getNextValues"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#abstract_sm.Two_Dimen_Accumulator.getNextValues" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function which is responsible for giving out next value given present state and present input. It contain the logic which connect the
+future state with present input and and present state for 2D_accumulator : new_state_0=state_0+input_0,new_state_1=state_1+input_1.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="abstract_sm.increamenter">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">abstract_sm.</span></span><span class="sig-name descname"><span class="pre">increamenter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">increment_value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/abstract_sm.html#increamenter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#abstract_sm.increamenter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">SM.SM</span></code></p>
+<p>This class is used to increament the input value by a certain_value. Inherited class from parent state machine</p>
+<p>parameters:incremente_values</p>
+<blockquote>
+<div><p>incremente_values=incrementer value</p>
+</div></blockquote>
+<dl class="py method">
+<dt class="sig sig-object py" id="abstract_sm.increamenter.getNextValues">
+<span class="sig-name descname"><span class="pre">getNextValues</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inp</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/abstract_sm.html#increamenter.getNextValues"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#abstract_sm.increamenter.getNextValues" title="Permalink to this definition">¶</a></dt>
+<dd><p>The function increaments the input sample by a certain value.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="abstract_sm.updowncounter">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">abstract_sm.</span></span><span class="sig-name descname"><span class="pre">updowncounter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">init_state</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/abstract_sm.html#updowncounter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#abstract_sm.updowncounter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">SM.SM</span></code></p>
+<p>This class is used  to implement updown counter based on the input [1,0]. Inherited class from parent state machine</p>
+<p>parameters:init_state</p>
+<blockquote>
+<div><p>Intial state of the system is passed</p>
+</div></blockquote>
+<dl class="py method">
+<dt class="sig sig-object py" id="abstract_sm.updowncounter.getNextValues">
+<span class="sig-name descname"><span class="pre">getNextValues</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inp</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/abstract_sm.html#updowncounter.getNextValues"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#abstract_sm.updowncounter.getNextValues" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function  which provide the logic which connect the future state with present input and and present state
+for updown counter : if input is 1: increament the state,else decreament the state</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">abstract_statemachine</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2021, abhi.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.0.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/rst/abstract_sm.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
