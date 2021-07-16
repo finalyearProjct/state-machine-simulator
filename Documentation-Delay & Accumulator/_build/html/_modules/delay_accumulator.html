@@ -1,0 +1,140 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>delay_accumulator &#8212; delay_and_accumulator 1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for delay_accumulator</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">SM</span> <span class="kn">import</span> <span class="n">SM</span>
+<div class="viewcode-block" id="Delay"><a class="viewcode-back" href="../rst/delay_accumulator.html#delay_accumulator.Delay">[docs]</a><span class="k">class</span> <span class="nc">Delay</span><span class="p">(</span><span class="n">SM</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Class for the Delay machine. Inherited from parent State machine</span>
+
+<span class="sd">    parameters:V0</span>
+
+<span class="sd">        V0= intial value of the delay box</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">v0</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span><span class="c1"># constructor is the initail value of the delay box</span>
+        <span class="c1"># default value is 0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">startState</span> <span class="o">=</span> <span class="n">v0</span>
+<div class="viewcode-block" id="Delay.getNextValues"><a class="viewcode-back" href="../rst/delay_accumulator.html#delay_accumulator.Delay.getNextValues">[docs]</a>    <span class="k">def</span> <span class="nf">getNextValues</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">,</span> <span class="n">inp</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The logic which connect the future state with present input and and present state</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">inp</span><span class="p">,</span> <span class="n">state</span><span class="p">)</span></div>
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span><span class="c1"># This function is the default __str__ method in python class</span>
+        <span class="k">return</span> <span class="s2">&quot;R&quot;</span></div>
+
+
+
+<div class="viewcode-block" id="Accumulator"><a class="viewcode-back" href="../rst/delay_accumulator.html#delay_accumulator.Accumulator">[docs]</a><span class="k">class</span> <span class="nc">Accumulator</span><span class="p">(</span><span class="n">SM</span><span class="p">):</span>     <span class="c1">## Class for the Accumulator machine in 1D</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Class for the Accumulator machine in 1D. Inherited from parent state machine</span>
+
+<span class="sd">    parameters:initialValue</span>
+
+<span class="sd">        initialValue=intial value of the delay box is given&quot;&quot;&quot;</span>
+    <span class="c1"># This is inherited from SM</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">initialValue</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span><span class="c1"># constructor is the initail value of the delay box</span>
+        <span class="c1"># default value is 0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">startState</span> <span class="o">=</span> <span class="n">initialValue</span>
+<div class="viewcode-block" id="Accumulator.getNextValues"><a class="viewcode-back" href="../rst/delay_accumulator.html#delay_accumulator.Accumulator.getNextValues">[docs]</a>    <span class="k">def</span> <span class="nf">getNextValues</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">,</span><span class="n">inp</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The logic which connect the future state with present input and and present state, for accumulator : new_state=state+input&quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">inp</span><span class="o">==</span><span class="s1">&#39;undefined&#39;</span><span class="p">:</span><span class="c1"># &#39;undefined &#39;is equilvalent to tristate in electronics</span>
+            <span class="k">return</span> <span class="p">(</span><span class="s1">&#39;undefined&#39;</span><span class="p">,</span><span class="s1">&#39;undefined&#39;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span> <span class="c1"># Do what the machine is intended to do</span>
+            <span class="k">return</span> <span class="n">state</span> <span class="o">+</span> <span class="n">inp</span><span class="p">,</span> <span class="n">state</span> <span class="o">+</span> <span class="n">inp</span></div>
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="c1"># This function is the default __str__ method in python class</span>
+        <span class="k">return</span> <span class="s2">&quot;Accumulator&quot;</span></div>
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">delay_and_accumulator</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2021, abhi.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.0.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>
